@@ -18,8 +18,8 @@ Go to [FI's website](https://mariluski23.github.io/fuzzierinter/) and start sear
 - `SORT <linked / date>` Sort the results by times linked or date.
 - `ORDER <asc / desc>` Order the results in ascending or descending order.
 
-> [!IMPORTANT]
-> You cannot just type a word and search for it, you must use the specific syntax.
+> [!TIP]
+> You can also search for a term in double quotes with no operators or modifiers to search it quickly.
 
 ### Examples
 
