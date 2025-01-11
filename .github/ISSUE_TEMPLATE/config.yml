@@ -3,3 +3,6 @@ contact_links:
   - name: Discussions
     url: https://github.com/mariluski23/fuzzierinter/discussions/categories/q-a
     about: Please, ask questions there on the Discussions
+  - name: Wiki
+    url: https://github.com/mariluski23/fuzzierinter/wiki
+    about: The official documentation
