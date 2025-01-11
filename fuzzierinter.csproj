@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\mario\source\repos\fuzzierinter\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\mario\source\repos\fuzzierinter\.editorconfig" />
+  </ItemGroup>
+
 </Project>

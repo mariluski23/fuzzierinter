@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fuzzierinter", "fuzzierinter.csproj", "{093C6C6A-1D19-4E71-BC88-2F7B4CCA0E2C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_fuzzierinter", "..\test_fuzzierinter\test_fuzzierinter.csproj", "{8E396CAB-73D5-448E-87E5-C4F677496372}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{093C6C6A-1D19-4E71-BC88-2F7B4CCA0E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{093C6C6A-1D19-4E71-BC88-2F7B4CCA0E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{093C6C6A-1D19-4E71-BC88-2F7B4CCA0E2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E396CAB-73D5-448E-87E5-C4F677496372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E396CAB-73D5-448E-87E5-C4F677496372}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E396CAB-73D5-448E-87E5-C4F677496372}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E396CAB-73D5-448E-87E5-C4F677496372}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

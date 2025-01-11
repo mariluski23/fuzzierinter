@@ -57,17 +57,17 @@ namespace fuzzierinter.Lexer
 
 		// List of recognized tokens, all in lowercase
 		private static readonly Dictionary<string, Tokens> Keywords = new Dictionary<string, Tokens>
-		{
-			{ "search", Tokens.SEARCH },
-			{ "or", Tokens.OR },
-			{ "and", Tokens.AND },
-			{ "not", Tokens.NOT },
-			{ "from", Tokens.FROM },
-			{ "in", Tokens.IN },
-			{ "exact", Tokens.EXACT },
-			{ "sort", Tokens.SORT },
-			{ "order", Tokens.ORDER }
-		};
+						{
+							{ "search", Tokens.SEARCH },
+							{ "or", Tokens.OR },
+							{ "and", Tokens.AND },
+							{ "not", Tokens.NOT },
+							{ "from", Tokens.FROM },
+							{ "in", Tokens.IN },
+							{ "exact", Tokens.EXACT },
+							{ "sort", Tokens.SORT },
+							{ "order", Tokens.ORDER }
+						};
 
 		// A list to hold the parsed tokens
 		public List<Token> ParsedTokens = new();
@@ -120,12 +120,11 @@ namespace fuzzierinter.Lexer
 					// Skip invalid characters or handle them as unknown
 					index++;
 				}
-
-				return ParsedTokens.ToArray();
 			}
 
 			// Add an EOF token to signify the end of input
 			ParsedTokens.Add(new Token(Tokens.EOF, ""));
+			return ParsedTokens.ToArray();
 		}
 
 		// Method to print out tokens for testing purposes
