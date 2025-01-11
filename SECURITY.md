@@ -17,4 +17,4 @@ Only these versions are supported:
 
 ## Reporting a Vulnerability
 
-Use [the issue tracker](https://github.com/mariluski23/fuzzierinter/issues) to report vulnerabilities
+Use [Discussions](https://github.com/mariluski23/fuzzierinter/discussions) to report vulnerabilities.
