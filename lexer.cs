@@ -2,7 +2,7 @@
 
 namespace fuzzierinter.Lexer
 {
-	internal class Lexer
+	public class Lexer
 	{
 		/// <summary>
 		/// A list of all tokens the lexer can recognize.
@@ -73,7 +73,7 @@ namespace fuzzierinter.Lexer
 		public List<Token> ParsedTokens = new();
 
 		// Method to tokenize the input string
-		public void Tokenize(string input)
+		public Token[] Tokenize(string input)
 		{
 			int index = 0;
 			while (index < input.Length)
@@ -120,6 +120,8 @@ namespace fuzzierinter.Lexer
 					// Skip invalid characters or handle them as unknown
 					index++;
 				}
+
+				return ParsedTokens.ToArray();
 			}
 
 			// Add an EOF token to signify the end of input
