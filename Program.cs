@@ -12,7 +12,7 @@ namespace fuzzierinter
 
 			if (args.Length == 0)
 			{
-				args = ["-"]; // Make it run the "ask the user" part
+				args = new string[] { "-" }; // Make it run the "ask the user" part
 			}
 
 			if (args[0] != "-r" && args[0] != "--results") // -r or --results just show the results
@@ -24,11 +24,21 @@ namespace fuzzierinter
 				try
 				{
 					Query = Console.ReadLine()!;
-				} catch (Exception e)
+				}
+				catch (Exception e)
 				{
 					Logger.ErrorMSG("Failed to read query: " + e.Message);
 					return;
 				}
+
+				Lexer.Lexer lexer = new();
+				lexer.Tokenize(Query);
+				Lexer.Lexer.Token[] tokens = lexer.ParsedTokens.ToArray();
+				Parser parser = new(Query);
+				string[][] parsedTokens = parser.Parse();
+
+				// Print out the tokens for testing purposes
+				lexer.PrintTokens();
 			}
 			else
 			{

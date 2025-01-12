@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace fuzzierinter.Lexer
 {
@@ -19,6 +20,8 @@ namespace fuzzierinter.Lexer
 			EXACT,
 			SORT,
 			ORDER,
+			STRING,
+			URL,
 		}
 
 		public enum SortValues
@@ -56,7 +59,7 @@ namespace fuzzierinter.Lexer
 		}
 
 		// List of recognized tokens, all in lowercase
-		private static readonly Dictionary<string, Tokens> Keywords = new Dictionary<string, Tokens>
+		private static readonly Dictionary<string, Tokens> Keywords = new()
 						{
 							{ "search", Tokens.SEARCH },
 							{ "or", Tokens.OR },
@@ -66,7 +69,7 @@ namespace fuzzierinter.Lexer
 							{ "in", Tokens.IN },
 							{ "exact", Tokens.EXACT },
 							{ "sort", Tokens.SORT },
-							{ "order", Tokens.ORDER }
+							{ "order", Tokens.ORDER },
 						};
 
 		// A list to hold the parsed tokens
@@ -87,8 +90,19 @@ namespace fuzzierinter.Lexer
 					continue;
 				}
 
+				// Handle URLs
+				if (input.Substring(index).StartsWith("http://") || input.Substring(index).StartsWith("https://"))
+				{
+					StringBuilder url = new StringBuilder();
+					while (index < input.Length && !char.IsWhiteSpace(input[index]))
+					{
+						url.Append(input[index]);
+						index++;
+					}
+					ParsedTokens.Add(new Token(Tokens.URL, url.ToString()));
+				}
 				// Handle keywords
-				if (char.IsLetter(currentChar))
+				else if (char.IsLetter(currentChar))
 				{
 					StringBuilder keyword = new StringBuilder();
 					while (index < input.Length && char.IsLetter(input[index]))
@@ -109,11 +123,21 @@ namespace fuzzierinter.Lexer
 						ParsedTokens.Add(new Token(Tokens.EOF, keywordStr));
 					}
 				}
-				// Handle other operators or punctuation (like ":", "(", etc.)
-				else if (currentChar == ':')
+				// Handle strings
+				else if (currentChar == '"')
 				{
-					ParsedTokens.Add(new Token(Tokens.EOF, ":"));
-					index++;
+					StringBuilder str = new StringBuilder();
+					index++; // Skip the opening quote
+					while (index < input.Length && input[index] != '"')
+					{
+						str.Append(input[index]);
+						index++;
+					}
+					index++; // Skip the closing quote
+					ParsedTokens.Add(new Token(Tokens.STRING, str.ToString()));
+
+					// Add a SEARCH token before the STRING token
+					ParsedTokens.Insert(ParsedTokens.Count - 1, new Token(Tokens.SEARCH, "search"));
 				}
 				else
 				{
@@ -124,6 +148,7 @@ namespace fuzzierinter.Lexer
 
 			// Add an EOF token to signify the end of input
 			ParsedTokens.Add(new Token(Tokens.EOF, ""));
+
 			return ParsedTokens.ToArray();
 		}
 
