@@ -13,7 +13,8 @@ namespace fuzzierinter
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("- [DEBUG] " + msg);
 		}
-		public static void ErrorMSG(string msg) {
+		public static void ErrorMSG(string msg)
+		{
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("- [ERROR] " + msg);
 		}

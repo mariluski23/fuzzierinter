@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 
-namespace fuzzierinter.Lexer
+namespace fuzzierinter
 {
 	public class Lexer
 	{
@@ -91,7 +91,7 @@ namespace fuzzierinter.Lexer
 				}
 
 				// Handle URLs
-				if (input.Substring(index).StartsWith("http://") || input.Substring(index).StartsWith("https://"))
+				if (input[index..].StartsWith("http://") || input.Substring(index).StartsWith("https://"))
 				{
 					StringBuilder url = new StringBuilder();
 					while (index < input.Length && !char.IsWhiteSpace(input[index]))

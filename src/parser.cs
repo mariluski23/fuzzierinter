@@ -8,16 +8,16 @@ namespace fuzzierinter
 	/// </summary>
 	public class Parser
 	{
-		private Lexer.Lexer lexer = new();
-		private List<Lexer.Lexer.Token> tokens;
+		private Lexer lexer = new();
+		private List<Lexer.Token> tokens;
 		private int currentToken = 0;
 
 		public Parser(string input)
 		{
-			tokens = new List<Lexer.Lexer.Token>(lexer.Tokenize(input));
+			tokens = new List<Lexer.Token>(lexer.Tokenize(input));
 		}
 
-		private Lexer.Lexer.Token CurrentToken => tokens[currentToken];
+		private Lexer.Token CurrentToken => tokens[currentToken];
 
 		private void Advance()
 		{
@@ -27,7 +27,7 @@ namespace fuzzierinter
 			}
 		}
 
-		private bool Match(Lexer.Lexer.Tokens tokenType)
+		private bool Match(Lexer.Tokens tokenType)
 		{
 			if (CurrentToken.Type == tokenType)
 			{
@@ -39,7 +39,7 @@ namespace fuzzierinter
 
 		public string InsideQuotes()
 		{
-			if (Match(Lexer.Lexer.Tokens.STRING))
+			if (Match(Lexer.Tokens.STRING))
 			{
 				// Get the thing inside the quotes
 				string value = CurrentToken.Value.Substring(1, CurrentToken.Value.Length - 2);
@@ -82,7 +82,7 @@ namespace fuzzierinter
 			for (int i = 0; i < tokens.Count; i++)
 			{
 				// Pair the token with the next token if it is a string
-				if (i < tokens.Count - 1 && tokens[i + 1].Type == Lexer.Lexer.Tokens.STRING)
+				if (i < tokens.Count - 1 && tokens[i + 1].Type == Lexer.Tokens.STRING)
 				{
 					pairedTokens.Add(Pair(i));
 					i++; // Skip the next token as it is already paired

@@ -1,5 +1,4 @@
-﻿
-namespace fuzzierinter.algorithms
+﻿namespace fuzzierinter.src.algorithms
 {
 	/// <summary>
 	/// The NaiveAlgorithm class is a class with functions with implementations of the Naive Algorithm

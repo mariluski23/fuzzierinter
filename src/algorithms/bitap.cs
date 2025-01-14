@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace fuzzierinter.algorithms
+namespace fuzzierinter.src.algorithms
 {
 	class BitapAlgorithm
 	{
@@ -29,7 +29,7 @@ namespace fuzzierinter.algorithms
 				{
 					if (text[j] == currentChar)
 					{
-						bitmask |= (1 << (textLength - 1 - j)); // Set the bit at the corresponding position
+						bitmask |= 1 << textLength - 1 - j; // Set the bit at the corresponding position
 					}
 				}
 
@@ -61,21 +61,21 @@ namespace fuzzierinter.algorithms
 			{
 				// Update the state for the current character
 				int oldS0 = S[0];
-				S[0] = (S[0] << 1) | bitmasks[0]; // Shift left and add the first bitmask
+				S[0] = S[0] << 1 | bitmasks[0]; // Shift left and add the first bitmask
 
 				// Check for matches with allowed errors
 				for (int j = 1; j <= maxErrors; j++)
 				{
 					// Store the previous state
 					int temp = S[j];
-					S[j] = ((oldS0 & bitmasks[j]) | (S[j] << 1)); // Update state with the current character's bitmask
+					S[j] = oldS0 & bitmasks[j] | S[j] << 1; // Update state with the current character's bitmask
 					oldS0 = temp; // Update oldS0 for the next iteration
 				}
 
 				// Check if the last bits indicate a match with allowed errors
 				for (int j = 0; j <= maxErrors; j++)
 				{
-					if ((S[j] & (1 << (patternLength - 1))) != 0)
+					if ((S[j] & 1 << patternLength - 1) != 0)
 					{
 						return true; // Pattern found with allowed errors
 					}

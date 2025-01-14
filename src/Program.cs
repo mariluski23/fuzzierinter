@@ -31,14 +31,21 @@ namespace fuzzierinter
 					return;
 				}
 
-				Lexer.Lexer lexer = new();
+				Lexer lexer = new();
 				lexer.Tokenize(Query);
-				Lexer.Lexer.Token[] tokens = lexer.ParsedTokens.ToArray();
+				Lexer.Token[] tokens = lexer.ParsedTokens.ToArray();
 				Parser parser = new(Query);
 				string[][] parsedTokens = parser.Parse();
+				Searcher.Searcher searcher = new(Query);
+				searcher.Search(Query).Wait();
 
 				// Print out the tokens for testing purposes
 				lexer.PrintTokens();
+
+				foreach (var i in parsedTokens)
+				{
+					Console.WriteLine(i[0] + " " + i[1]);
+				}
 			}
 			else
 			{
@@ -46,6 +53,25 @@ namespace fuzzierinter
 				string query = args[1];
 				Console.WriteLine(query);
 			}
+		}
+	}
+	public class Searcher
+	{
+		private readonly string _query;
+
+		public Searcher(string query)
+		{
+			_query = query;
+		}
+
+		public async Task Search(string query)
+		{
+			Console.WriteLine("Entering Search method with query: " + query);
+
+			// Add your search logic here
+			// Ensure that any recursive calls have a base case to prevent infinite recursion
+
+			Console.WriteLine("Exiting Search method with query: " + query);
 		}
 	}
 }
